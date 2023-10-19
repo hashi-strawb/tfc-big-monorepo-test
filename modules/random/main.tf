@@ -3,7 +3,7 @@ variable "length" {
 }
 
 variable "prefix" {
-  default = ""
+  default = null
 }
 
 variable "separator" {
