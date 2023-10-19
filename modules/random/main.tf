@@ -1,5 +1,5 @@
 variable "length" {
-  default = 2
+  default = 3
 }
 
 variable "prefix" {
