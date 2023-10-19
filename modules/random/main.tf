@@ -1,0 +1,21 @@
+variable "length" {
+  default = 2
+}
+
+variable "prefix" {
+  default = ""
+}
+
+variable "separator" {
+  default = "-"
+}
+
+resource "random_pet" "pet" {
+  length    = var.length
+  prefix    = var.prefix
+  separator = var.separator
+}
+
+output "pet" {
+  value = random_pet.pet.id
+}
