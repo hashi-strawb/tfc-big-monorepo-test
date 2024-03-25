@@ -3,6 +3,9 @@
 # https://github.com/hashi-strawb/tfc-monorepo-test/blob/main/repo_dirs/main.tf
 #
 
+
+# And then modified by hand
+
 module "pet" {
   source = "../../modules/random"
 }
