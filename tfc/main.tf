@@ -7,20 +7,24 @@ terraform {
 }
 
 provider "tfe" {
-  # Configuration options
+  organization = "hashi_strawb_testing"
+}
+
+resource "tfe_project" "test" {
+  name = "monorepo-test"
 }
 
 
-
+# Here's a workspace for each of my workspace directories
 resource "tfe_workspace" "ws" {
-  count = 500
+  count = 10
 
-  auto_apply        = true
-  name              = "many-workspace-test-${format("%04d", count.index)}"
-  organization      = "hashi_strawb_testing"
-  project_id        = "prj-8rNEinGacXMAwCr4"
-  trigger_prefixes  = ["/modules"]
-  working_directory = "workspaces/"
+  auto_apply = true
+  name       = "many-workspace-test-${format("%04d", count.index)}"
+
+  project_id        = tfe_project.test.id
+  working_directory = "individual-workspaces/ws-${format("%04d", count.index)}"
+
   vcs_repo {
     # built-in github app (no custom webhooks)
     github_app_installation_id = "ghain-3JcBMQW48TPfPn4f"
