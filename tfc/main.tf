@@ -25,6 +25,9 @@ resource "tfe_workspace" "ws" {
   project_id        = tfe_project.test.id
   working_directory = "individual-workspaces/ws-${format("%04d", count.index)}"
 
+  # trigger an update if the module repo updates
+  trigger_prefixes = ["/modules"]
+
   vcs_repo {
     # built-in github app (no custom webhooks)
     github_app_installation_id = "ghain-3JcBMQW48TPfPn4f"
